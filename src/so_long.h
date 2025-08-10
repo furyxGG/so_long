@@ -41,6 +41,7 @@ typedef struct	s_game
 	t_map	*map;
 }				t_game;
 
-int	get_line_size();
+int	get_line_size(t_map *map);
+int	get_colmn_size(t_map *map);
 
 #endif

@@ -18,8 +18,15 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	map = malloc(sizeof(t_map));
+	if (!map)
+		return (1);
 	map->mapname = ft_strdup(argv[1]);
-	ft_printf("%d", get_line_size(map));
+	if (!map->mapname)
+	{
+		free(map);
+		return (1);
+	}
+	ft_printf("column: %d", get_colmn_size(map));
 	free(map->mapname);
 	free(map);
     return (0);

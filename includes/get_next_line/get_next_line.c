@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 05:35:59 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/10 18:06:26 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/10 19:51:18 by fyagbasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*takedata(int fd, char *allines)
 {
 	char	*buff;
-	char	*temp;
+	char	*tmp;
 	int		bytesize;
 
 	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -32,9 +32,9 @@ static char	*takedata(int fd, char *allines)
 			return (NULL);
 		}
 		buff[bytesize] = '\0';
-		temp = ft_strjoin_gnl(allines, buff);
+		tmp = ft_strjoin_gnl(allines, buff);
 		free(allines);
-		allines = temp;
+		allines = tmp;
 	}
 	free(buff);
 	return (allines);
@@ -60,18 +60,18 @@ static char	*giveline(char **allines)
 
 char	*get_next_line(int fd)
 {
-	static char	*allines;
+	static char	*allines[4048];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	allines = takedata(fd, allines);
-	if (!allines || allines[0] == '\0')
+	allines[fd] = takedata(fd, allines[fd]);
+	if (!allines[fd] || allines[fd][0] == '\0')
 	{
-		free(allines);
-		allines = NULL;
+		free(allines[fd]);
+		allines[fd] = NULL;
 		return (NULL);
 	}
-	line = giveline(&allines);
+	line = giveline(&allines[fd]);
 	return (line);
 }

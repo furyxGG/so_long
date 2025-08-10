@@ -12,6 +12,16 @@
 
 #include "so_long.h"
 
+static void	freeit(char *line, int fd)
+{
+	free(line);
+	while ((line = get_next_line(fd)))
+	{
+		free(line);
+	}
+	close(fd);
+}
+
 int	get_line_size(t_map *map)
 {
 	int		a;
@@ -29,5 +39,36 @@ int	get_line_size(t_map *map)
 	}
 	free(line);
 	close(fd);
+	if (a < 3)
+		return (-42);
+	map->height = a;
 	return (a);
+}
+
+int	get_colmn_size(t_map *map)
+{
+	size_t	size;
+	int		fd;
+	int		a;
+	char	*line;
+	int		total_lines;
+
+	total_lines = get_line_size(map);
+	fd = open(map->mapname, O_RDONLY);
+	line = get_next_line(fd);
+	size = ft_strlen(line);
+	a = 2;
+	while (a <= total_lines)
+	{
+		free(line);
+		line = get_next_line(fd);
+		if (a == total_lines && size == ft_strlen(line) + 2)
+			break;
+		if (size != ft_strlen(line))
+			return (freeit(line, fd), -42);
+		a++;
+	}
+	freeit(line, fd);
+	map->len = size - 2;
+	return (size - 2);
 }

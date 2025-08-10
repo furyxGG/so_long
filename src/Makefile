@@ -1,9 +1,9 @@
 NAME	=	so_long.a
 
 CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra -I ../minilibx-linux
+CFLAGS	=	-Wall -Werror -Wextra -I ../includes/minilibx-linux -I ../includes/ft_printf -I ../includes/libft -I ../includes/get_next_line
 
-SRCS	=	deneme.c
+SRCS	=	read_map.c
 
 OBJS	=	$(SRCS:.c=.o)
 

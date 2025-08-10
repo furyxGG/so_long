@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fyagbasa <fyagbasa@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 05:36:21 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/07/10 01:06:04 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/10 18:06:02 by fyagbasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_gnl(const char *s)
 {
 	int	a;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (a);
 }
 
-char	*ft_strchr(char *s, char c)
+char	*ft_strchr_gnl(char *s, char c)
 {
 	if (!s)
 		return (NULL);
@@ -37,7 +37,7 @@ char	*ft_strchr(char *s, char c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*str;
 	int		a;
@@ -45,7 +45,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1 && !s2)
 		return (NULL);
-	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	str = (char *)malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	a = 0;
@@ -65,7 +65,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 {
 	char	*subptr;
 	size_t	a;
@@ -73,7 +73,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	a = 0;
 	if (!s)
 		return (0);
-	if (start >= ft_strlen(s))
+	if (start >= ft_strlen_gnl(s))
 	{
 		subptr = (char *)malloc(1 * sizeof(char));
 		if (!subptr)
@@ -81,8 +81,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		subptr[0] = '\0';
 		return (subptr);
 	}
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
+	if (len > ft_strlen_gnl(s) - start)
+		len = ft_strlen_gnl(s) - start;
 	subptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!subptr)
 		return (0);

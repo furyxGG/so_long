@@ -12,8 +12,15 @@
 
 #include "so_long.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
-	create_win();
+	t_map	*map;
+	if (argc != 2)
+		return (0);
+	map = malloc(sizeof(t_map));
+	map->mapname = ft_strdup(argv[1]);
+	ft_printf("%d", get_line_size(map));
+	free(map->mapname);
+	free(map);
     return (0);
 }

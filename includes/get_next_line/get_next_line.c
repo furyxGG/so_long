@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fyagbasa <fyagbasa@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 05:35:59 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/07/10 00:53:29 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/10 18:06:26 by fyagbasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*takedata(int fd, char *allines)
 	if (!buff)
 		return (NULL);
 	bytesize = 1;
-	while (!ft_strchr(allines, '\n') && bytesize > 0)
+	while (!ft_strchr_gnl(allines, '\n') && bytesize > 0)
 	{
 		bytesize = read(fd, buff, BUFFER_SIZE);
 		if (bytesize == -1)
@@ -32,7 +32,7 @@ static char	*takedata(int fd, char *allines)
 			return (NULL);
 		}
 		buff[bytesize] = '\0';
-		temp = ft_strjoin(allines, buff);
+		temp = ft_strjoin_gnl(allines, buff);
 		free(allines);
 		allines = temp;
 	}
@@ -51,8 +51,8 @@ static char	*giveline(char **allines)
 		a++;
 	if ((*allines)[a] == '\n')
 		a++;
-	line = ft_substr(*allines, 0, a);
-	newpos = ft_substr(*allines, a, ft_strlen(*allines) - a);
+	line = ft_substr_gnl(*allines, 0, a);
+	newpos = ft_substr_gnl(*allines, a, ft_strlen_gnl(*allines) - a);
 	free(*allines);
 	*allines = newpos;
 	return (line);

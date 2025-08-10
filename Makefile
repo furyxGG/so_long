@@ -1,23 +1,23 @@
 NAME	=	so_long
 
 CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra -I ./libft -I ./get_next_line -I ./ft_printf -I ./src -I ./minilibx-linux
+CFLAGS	=	-Wall -Werror -Wextra -I ./includes/libft -I ./includes/get_next_line -I ./includes/ft_printf -I ./src -I ./includes/minilibx-linux
 
-PRINTF	=	ft_printf/libftprintf.a
-LIBFT	=	libft/libft.a
-GNL		=	get_next_line/gnl.a
+PRINTF	=	includes/ft_printf/libftprintf.a
+LIBFT	=	includes/libft/libft.a
+GNL		=	includes/get_next_line/gnl.a
 SRC		=	src/so_long.a
-MLX		=	minilibx-linux/libmlx.a
+MLX		=	includes/minilibx-linux/libmlx.a
 
 SRCS	=	main.c
 OBJS	=	$(SRCS:.c=.o)
 
-MLXFLAG	=	-Lminilibx-linux -lmlx -lX11 -lXext -lm
+MLXFLAG	=	-Lincludes/minilibx-linux -lmlx -lX11 -lXext -lm
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS) $(PRINTF) $(LIBFT) $(GNL) $(MLX) $(SRC)
-	$(CC) $(CFLAGS) $(OBJS) $(SRC) $(PRINTF) $(LIBFT) $(GNL) $(MLX) $(MLXFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(SRC) $(PRINTF) $(GNL) $(LIBFT) $(MLX) $(MLXFLAG) -o $(NAME)
 
 $(SRC):
 	make -C $(dir $(SRC))

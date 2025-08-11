@@ -47,5 +47,12 @@ int	check_map(t_map *map)
 		return (-42);
 	if (check_wall_ok(map) == -42)
 		return (-42);
+	if (map->coinc < 1)
+		return (-42);
+	if (map->playerc != 1)
+		return (-42);
+	if (map->exitc != 1)
+		return (-42);
+	ft_printf("Harita doğru!");
 	return (1);
 }

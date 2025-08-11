@@ -27,11 +27,9 @@ typedef struct	s_map
 	int		playerc;
 	int		coinc;
 	int		enemyc;
+	int		exitc;
 	int		len;
 	int		height;
-	int		is_rect;
-	int		is_wall_ok;
-	int		is_path_ok;
 }				t_map;
 
 typedef struct	s_game
@@ -44,8 +42,13 @@ typedef struct	s_game
 int		get_line_size(t_map *map);
 int		get_colmn_size(t_map *map);
 void	get_real_map(t_map *map);
+void	get_coin_size(t_map *map);
+void	get_player_size(t_map *map);
+void	get_exit_size(t_map *map);
 
 int		check_wall_ok(t_map *map);
 int		check_map(t_map *map);
+
+void	init_map(t_game *game, char *filename);
 
 #endif

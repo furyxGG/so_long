@@ -29,22 +29,15 @@ void	freerealmap(t_map *map)
 
 int main(int argc, char **argv)
 {
-	t_map	*map;
+	t_game	*game;
+
 	if (argc != 2)
 		return (0);
-	map = malloc(sizeof(t_map));
-	if (!map)
-		return (1);
-	map->mapname = ft_strdup(argv[1]);
-	if (!map->mapname)
-	{
-		free(map);
-		return (1);
-	}
-	get_real_map(map);
-	ft_printf("column: %d\n", check_map(map));
-	free(map->mapname);
-	freerealmap(map);
-	free(map);
+	game = malloc(sizeof(t_game));
+	init_map(game, argv[1]);
+	free(game->map->mapname);
+	freerealmap(game->map);
+	free(game->map);
+	free(game);
     return (0);
 }

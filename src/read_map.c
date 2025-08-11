@@ -72,3 +72,23 @@ int	get_colmn_size(t_map *map)
 	map->len = size - 2;
 	return (size - 2);
 }
+
+void	get_real_map(t_map *map)
+{
+	int		a;
+	char	*line;
+	int		fd;
+
+	map->realmap = malloc(sizeof(char *) * (get_line_size(map) + 1));
+	a = 0;
+	fd = open(map->mapname, O_RDONLY);
+	while (a < get_line_size(map))
+	{
+		line = get_next_line(fd);
+		map->realmap[a] = ft_strdup(line);
+		free(line);
+		a++;
+	}
+	map->realmap[a] = '\0';
+	close(fd);
+}

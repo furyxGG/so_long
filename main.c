@@ -12,6 +12,19 @@
 
 #include "so_long.h"
 
+void	freerealmap(t_map *map)
+{
+	int	a;
+
+	a = 0;
+	while (map->realmap[a])
+	{
+		free(map->realmap[a]);
+		a++;
+	}
+	free(map->realmap);
+}
+
 int main(int argc, char **argv)
 {
 	t_map	*map;
@@ -26,8 +39,13 @@ int main(int argc, char **argv)
 		free(map);
 		return (1);
 	}
-	ft_printf("column: %d", get_colmn_size(map));
+	get_real_map(map);
+	for (int i = 0; i < get_line_size(map); i++)
+	{
+		ft_printf("column: %s\n", map->realmap[i]);
+	}
 	free(map->mapname);
+	freerealmap(map);
 	free(map);
     return (0);
 }

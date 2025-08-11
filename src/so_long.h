@@ -45,4 +45,7 @@ int		get_line_size(t_map *map);
 int		get_colmn_size(t_map *map);
 void	get_real_map(t_map *map);
 
+int		check_wall_ok(t_map *map);
+int		check_map(t_map *map);
+
 #endif

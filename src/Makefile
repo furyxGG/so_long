@@ -3,7 +3,8 @@ NAME	=	so_long.a
 CC		=	cc
 CFLAGS	=	-Wall -Werror -Wextra -I ../includes/minilibx-linux -I ../includes/ft_printf -I ../includes/libft -I ../includes/get_next_line
 
-SRCS	=	read_map.c
+SRCS	=	read_map.c \
+			check_map.c
 
 OBJS	=	$(SRCS:.c=.o)
 

@@ -17,6 +17,8 @@ void	freerealmap(t_map *map)
 	int	a;
 
 	a = 0;
+	if (!map->realmap)
+		return ;
 	while (map->realmap[a])
 	{
 		free(map->realmap[a]);
@@ -40,10 +42,7 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	get_real_map(map);
-	for (int i = 0; i < get_line_size(map); i++)
-	{
-		ft_printf("column: %s\n", map->realmap[i]);
-	}
+	ft_printf("column: %d\n", check_map(map));
 	free(map->mapname);
 	freerealmap(map);
 	free(map);

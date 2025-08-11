@@ -79,7 +79,10 @@ void	get_real_map(t_map *map)
 	char	*line;
 	int		fd;
 
-	map->realmap = malloc(sizeof(char *) * (get_line_size(map) + 1));
+	if (get_line_size(map) > 0)
+		map->realmap = malloc(sizeof(char *) * (get_line_size(map) + 1));
+	if (!map->realmap)
+		return ;
 	a = 0;
 	fd = open(map->mapname, O_RDONLY);
 	while (a < get_line_size(map))

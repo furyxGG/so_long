@@ -39,9 +39,21 @@ void	freemap(t_game *game)
 	}
 }
 
+void	freegame(t_game *game)
+{
+	freemap(game);
+	if (game->player)
+		free(game->player);
+	if (game->wall)
+		free(game->wall);
+	free(game);
+}
+
 void	init_game(char *name)
 {
 	t_game *game;
+
+	(void)name;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
@@ -53,8 +65,6 @@ void	init_game(char *name)
 		return ;
 	}
 	init_player(game);
-	freemap(game);
-	if (game->player)
-		free(game->player);
-	free(game);
+	init_mlx(game);
+	freegame(game);
 }

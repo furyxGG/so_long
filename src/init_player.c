@@ -41,4 +41,6 @@ void	init_player(t_game *game)
 	if (!game->player)
 		return ;
 	get_player_pos(game);
+	game->player->score = 0;
+	game->player->step = 0;
 }

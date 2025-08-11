@@ -32,11 +32,21 @@ typedef struct	s_map
 	int		height;
 }				t_map;
 
-typedef struct s_player
+typedef struct	s_player
 {
 	int	pos_x;
 	int	pos_y;
+	int	step;
+	int	score;
+	int	direct;
 }				t_player;
+
+typedef struct	s_wall
+{
+	void	*wallimage;
+	int		x;
+	int		y;
+}				t_wall;
 
 
 typedef struct	s_game
@@ -45,6 +55,8 @@ typedef struct	s_game
 	void		*win;
 	t_map		*map;
 	t_player	*player;
+	t_wall		*wall;
+	void		*player_f_i[8];
 }				t_game;
 
 int		get_line_size(t_map *map);
@@ -67,5 +79,9 @@ void	init_player(t_game *game);
 int		validate_chars(char *line, char *chars);
 
 void	freemap(t_game *game);
+
+void	init_mlx(t_game *game);
+
+void	init_wall(t_game *game);
 
 #endif

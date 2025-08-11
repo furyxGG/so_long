@@ -8,7 +8,9 @@ SRCS	=	read_map.c \
 			init_map.c \
 			check_path.c \
 			init_player.c \
-			init_game.c
+			init_game.c \
+			init_mlx.c \
+			init_wall.c
 
 OBJS	=	$(SRCS:.c=.o)
 

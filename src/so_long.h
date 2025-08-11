@@ -32,11 +32,19 @@ typedef struct	s_map
 	int		height;
 }				t_map;
 
+typedef struct s_player
+{
+	int	pos_x;
+	int	pos_y;
+}				t_player;
+
+
 typedef struct	s_game
 {
-	void	*mlx;
-	void	*win;
-	t_map	*map;
+	void		*mlx;
+	void		*win;
+	t_map		*map;
+	t_player	*player;
 }				t_game;
 
 int		get_line_size(t_map *map);
@@ -45,10 +53,19 @@ void	get_real_map(t_map *map);
 void	get_coin_size(t_map *map);
 void	get_player_size(t_map *map);
 void	get_exit_size(t_map *map);
+void	get_enemy_size(t_map *map);
+void	get_player_pos(t_game *game);
 
 int		check_wall_ok(t_map *map);
 int		check_map(t_map *map);
+int		check_path(t_map *map);
 
 void	init_map(t_game *game, char *filename);
+void	init_game(char *name);
+void	init_player(t_game *game);
+
+int		validate_chars(char *line, char *chars);
+
+void	freemap(t_game *game);
 
 #endif

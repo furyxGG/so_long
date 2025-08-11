@@ -5,7 +5,10 @@ CFLAGS	=	-Wall -Werror -Wextra -I ../includes/minilibx-linux -I ../includes/ft_p
 
 SRCS	=	read_map.c \
 			check_map.c \
-			init_map.c
+			init_map.c \
+			check_path.c \
+			init_player.c \
+			init_game.c
 
 OBJS	=	$(SRCS:.c=.o)
 

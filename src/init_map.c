@@ -78,6 +78,28 @@ void	get_exit_size(t_map *map)
 	map->exitc = size;
 }
 
+void	get_enemy_size(t_map *map)
+{
+	int	a;
+	int	b;
+	int	size;
+
+	a = 0;
+	size = 0;
+	while (map->realmap[a])
+	{
+		b = 0;
+		while (map->realmap[a][b])
+		{
+			if (map->realmap[a][b] == 'D')
+				size++;
+			b++;
+		}
+		a++;
+	}
+	map->enemyc = size;
+}
+
 void	init_map(t_game *game, char *filename)
 {
 	game->map = malloc(sizeof(t_map));
@@ -89,11 +111,15 @@ void	init_map(t_game *game, char *filename)
 		free(game->map);
 		return ;
 	}
-	get_line_size(game->map);
-	get_colmn_size(game->map);
+	game->map->realmap = NULL;
+	if (get_line_size(game->map) == -42)
+		return (freemap(game));
+	if (get_colmn_size(game->map) == -42)
+		return (freemap(game));
 	get_real_map(game->map);
 	get_coin_size(game->map);
 	get_player_size(game->map);
 	get_exit_size(game->map);
+	get_enemy_size(game->map);
 	check_map(game->map);
 }

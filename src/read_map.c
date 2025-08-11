@@ -45,32 +45,42 @@ int	get_line_size(t_map *map)
 	return (a);
 }
 
+static int	clean_line(char *line)
+{
+	int	size;
+
+	size = ft_strlen(line);
+	if (size > 0 && line[size - 1] == '\n')
+		size--;
+	if (size > 0 && line[size - 1] == '\r')
+		size--;
+	return (size);
+}
+
 int	get_colmn_size(t_map *map)
 {
-	size_t	size;
 	int		fd;
 	int		a;
 	char	*line;
-	int		total_lines;
+	int		size;
 
-	total_lines = get_line_size(map);
 	fd = open(map->mapname, O_RDONLY);
 	line = get_next_line(fd);
-	size = ft_strlen(line);
+	size = clean_line(line);
 	a = 2;
-	while (a <= total_lines)
+	while (a <= get_line_size(map))
 	{
 		free(line);
 		line = get_next_line(fd);
-		if (a == total_lines && size == ft_strlen(line) + 2)
+		if (!line)
 			break;
-		if (size != ft_strlen(line))
+		if (size != clean_line(line))
 			return (freeit(line, fd), -42);
 		a++;
 	}
 	freeit(line, fd);
-	map->len = size - 2;
-	return (size - 2);
+	map->len = size;
+	return (size);
 }
 
 void	get_real_map(t_map *map)
@@ -88,7 +98,7 @@ void	get_real_map(t_map *map)
 	while (a < get_line_size(map))
 	{
 		line = get_next_line(fd);
-		map->realmap[a] = ft_strdup(line);
+		map->realmap[a] = ft_strtrim(line, "\r\n");
 		free(line);
 		a++;
 	}

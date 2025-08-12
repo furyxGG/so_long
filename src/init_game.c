@@ -12,28 +12,41 @@
 
 #include "so_long.h"
 
-void	freerealmap(t_map *map)
+void	free_animations(t_game *game)
 {
 	int	a;
 
 	a = 0;
-	if (!map || !map->realmap)
-		return ;
-	while (map->realmap[a])
+	if (game->wall)
 	{
-		free(map->realmap[a]);
-		a++;
+		while (a < 9)
+		{
+			if (game->wall->wallimage[a])
+				mlx_destroy_image(game->mlx, game->wall->wallimage[a]);
+			a++;
+		}
+		free(game->wall);
 	}
-	free(map->realmap);
 }
 
 void	freemap(t_game *game)
 {
+	int	a;
+
+	a = 0;
 	if (game->map)
 	{
 		if (game->map->mapname)
 			free(game->map->mapname);
-		freerealmap(game->map);
+		if (game->map->realmap)
+		{
+			while (game->map->realmap[a])
+			{
+				free(game->map->realmap[a]);
+				a++;
+			}
+		}
+		free(game->map->realmap);
 		free(game->map);
 		game->map = NULL;
 	}
@@ -41,11 +54,28 @@ void	freemap(t_game *game)
 
 void	freegame(t_game *game)
 {
+	int	i;
+
+	if (!game)
+		return ;
+	i = 0;
+	while (i < 8)
+	{
+		if (game->player_f_i[i])
+			mlx_destroy_image(game->mlx, game->player_f_i[i]);
+		i++;
+	}
+	free_animations(game);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	freemap(game);
 	if (game->player)
 		free(game->player);
-	if (game->wall)
-		free(game->wall);
 	free(game);
 }
 
@@ -65,6 +95,7 @@ void	init_game(char *name)
 		return ;
 	}
 	init_player(game);
+	ft_printf("player init\n");
 	init_mlx(game);
 	freegame(game);
 }

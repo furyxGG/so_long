@@ -10,7 +10,10 @@ SRCS	=	read_map.c \
 			init_player.c \
 			init_game.c \
 			init_mlx.c \
-			init_wall.c
+			init_wall.c \
+			keys.c \
+			player_animation.c \
+			main_animation.c
 
 OBJS	=	$(SRCS:.c=.o)
 

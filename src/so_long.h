@@ -20,6 +20,9 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
+#define MLX_KEY_PRESS       2
+#define MLX_DESTROY_NOTIFY 17
+
 typedef struct	s_map
 {
 	char	**realmap;
@@ -39,11 +42,13 @@ typedef struct	s_player
 	int	step;
 	int	score;
 	int	direct;
+	int	img_x;
+	int	img_y;
 }				t_player;
 
 typedef struct	s_wall
 {
-	void	*wallimage;
+	void	*wallimage[9];
 	int		x;
 	int		y;
 }				t_wall;
@@ -57,6 +62,7 @@ typedef struct	s_game
 	t_player	*player;
 	t_wall		*wall;
 	void		*player_f_i[8];
+    int			current_frame;
 }				t_game;
 
 int		get_line_size(t_map *map);
@@ -79,9 +85,23 @@ void	init_player(t_game *game);
 int		validate_chars(char *line, char *chars);
 
 void	freemap(t_game *game);
+void	freegame(t_game *game);
 
 void	init_mlx(t_game *game);
 
 void	init_wall(t_game *game);
+
+int		take_key(int keycode, void *param);
+int		take_close(void *param);
+
+void	draw_map(t_game *game);
+void	animate_player(t_game *game, char **paths);
+int		animation_loop(t_game *game);
+void	player_idle_down(t_game *game);
+void	player_idle_right(t_game *game);
+void	player_idle_left(t_game *game);
+void	player_idle_up(t_game *game);
+void	main_animation(t_game *game, int n);
+
 
 #endif

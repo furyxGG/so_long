@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <unistd.h>
 
 static int	is_valid_move(t_game *game, int new_x, int new_y)
 {
@@ -41,6 +42,26 @@ void	helper_anim(t_game *game, int new_x, int new_y)
 	draw_map(game);
 }
 
+void	helper_anim2(t_game *game, int n)
+{
+	if (n == 0)
+	{
+		player_idle_down(game);
+	}
+	else if (n == 1)
+	{
+		player_idle_right(game);
+	}
+	else if (n == 2)
+	{
+		player_idle_left(game);
+	}
+	else if (n == 3)
+	{
+		player_idle_up(game);
+	}
+}
+
 void	main_animation(t_game *game, int n)
 {
 	int	new_x;
@@ -59,13 +80,6 @@ void	main_animation(t_game *game, int n)
 	if (!is_valid_move(game, new_x, new_y))
 		return ;
 	check_enemy_collision(game, new_x, new_y);
-	if (n == 0)
-		player_idle_down(game);
-	else if (n == 1)
-		player_idle_right(game);
-	else if (n == 2)
-		player_idle_left(game);
-	else if (n == 3)
-		player_idle_up(game);
+	helper_anim2(game, n);
 	helper_anim(game, new_x, new_y);
 }

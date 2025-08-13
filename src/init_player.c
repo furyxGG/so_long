@@ -14,24 +14,24 @@
 
 void	get_player_pos(t_game *game)
 {
-	int	i;
-	int	j;
+	int	a;
+	int	b;
 
-	i = 0;
-	while (game->map->realmap[i])
+	a = 0;
+	while (game->map->realmap[a])
 	{
-		j = 0;
-		while (game->map->realmap[i][j])
+		b = 0;
+		while (game->map->realmap[a][b])
 		{
-			if (game->map->realmap[i][j] == 'P')
+			if (game->map->realmap[a][b] == 'P')
 			{
-				game->player->pos_x = j;
-				game->player->pos_y = i;
+				game->player->pos_x = b;
+				game->player->pos_y = a;
 				return ;
 			}
-			j++;
+			b++;
 		}
-		i++;
+		a++;
 	}
 }
 
@@ -42,6 +42,8 @@ int	animation_loop(t_game *game)
     frame_count++;
     if (frame_count % 500 == 0)
     {
+		mlx_clear_window(game->mlx, game->win);
+        draw_map(game);
         mlx_put_image_to_window(game->mlx, game->win,
             game->player_f_i[game->current_frame],
             game->player->pos_x * 64, game->player->pos_y * 64);

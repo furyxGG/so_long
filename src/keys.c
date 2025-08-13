@@ -20,13 +20,13 @@ int	take_key(int keycode, void *param)
 		freegame(param);
         exit(0);
 	}
-	if (keycode == 100)
+	if (keycode == 100) // right d
 		main_animation(param, 1);
-	if (keycode == 115)
+	if (keycode == 115) // down s
 		main_animation(param, 0);
-	if (keycode == 97)
+	if (keycode == 97) // left a
 		main_animation(param, 2);
-	if (keycode == 119)
+	if (keycode == 119) // up w
 		main_animation(param, 3);
     return (0);
 }

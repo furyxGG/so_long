@@ -17,6 +17,7 @@ void	init_mlx(t_game *game)
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->map->len * 64, game->map->height * 64, "so_long");
 	init_wall(game);
+	init_enemy(game);
 	player_idle_down(game);
 	mlx_hook(game->win, 2, 1L<<0, take_key, game);
 	mlx_hook(game->win, 17, 1L<<17, take_close, game);

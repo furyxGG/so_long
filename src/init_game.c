@@ -27,6 +27,19 @@ void	free_animations(t_game *game)
 		}
 		free(game->wall);
 	}
+	a = 0;
+	while (a < 8)
+	{
+		if (game->player_f_i[a])
+			mlx_destroy_image(game->mlx, game->player_f_i[a]);
+		a++;
+	}
+	a = -1;
+	while (++a < 4)
+	{
+		if (game->enemy_sprite[a])
+			mlx_destroy_image(game->mlx, game->enemy_sprite[a]);
+	}
 }
 
 void	freemap(t_game *game)
@@ -54,17 +67,8 @@ void	freemap(t_game *game)
 
 void	freegame(t_game *game)
 {
-	int	i;
-
 	if (!game)
 		return ;
-	i = 0;
-	while (i < 8)
-	{
-		if (game->player_f_i[i])
-			mlx_destroy_image(game->mlx, game->player_f_i[i]);
-		i++;
-	}
 	free_animations(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
@@ -76,14 +80,14 @@ void	freegame(t_game *game)
 	freemap(game);
 	if (game->player)
 		free(game->player);
+	if (game->enemies)
+		free(game->enemies);
 	free(game);
 }
 
 void	init_game(char *name)
 {
 	t_game *game;
-
-	(void)name;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
@@ -95,7 +99,6 @@ void	init_game(char *name)
 		return ;
 	}
 	init_player(game);
-	ft_printf("player init\n");
 	init_mlx(game);
 	freegame(game);
 }

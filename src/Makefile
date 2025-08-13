@@ -13,7 +13,9 @@ SRCS	=	read_map.c \
 			init_wall.c \
 			keys.c \
 			player_animation.c \
-			main_animation.c
+			main_animation.c \
+			init_enemy.c \
+			enemy_animation.c
 
 OBJS	=	$(SRCS:.c=.o)
 

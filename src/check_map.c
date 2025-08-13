@@ -67,6 +67,30 @@ int	check_wall_ok(t_map *map)
 	return (1);
 }
 
+int	check_map_name(t_map *map)
+{
+	char	**arr;
+	int		a;
+
+	arr = ft_split(map->mapname, '.');
+	a = 0;
+	while (arr[a])
+		a++;
+	if (!ft_strnstr(arr[a - 1], "ber", 3))
+	{
+		a = -1;
+		while (arr[++a])
+			free(arr[a]);
+		free(arr);
+		return (-42);
+	}
+	a = -1;
+	while (arr[++a])
+		free(arr[a]);
+	free(arr);
+	return (1);
+}
+
 int	check_map(t_map *map)
 {
 	if (get_line_size(map) == -42)
@@ -82,6 +106,8 @@ int	check_map(t_map *map)
 	if (map->playerc != 1)
 		return (-42);
 	if (map->exitc != 1)
+		return (-42);
+	if (check_map_name(map) == -42)
 		return (-42);
 	if (!check_path(map))
 		return (-42);

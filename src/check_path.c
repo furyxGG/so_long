@@ -14,61 +14,61 @@
 
 static void	get_player_position(t_map *map, int *x, int *y)
 {
-	int	i;
-	int	j;
+	int	a;
+	int	b;
 
-	i = 0;
-	while (map->realmap[i])
+	a = 0;
+	while (map->realmap[a])
 	{
-		j = 0;
-		while (map->realmap[i][j])
+		b = 0;
+		while (map->realmap[a][b])
 		{
-			if (map->realmap[i][j] == 'P')
+			if (map->realmap[a][b] == 'P')
 			{
-				*x = j;
-				*y = i;
+				*x = b;
+				*y = a;
 				return ;
 			}
-			j++;
+			b++;
 		}
-		i++;
+		a++;
 	}
 }
 
 static char	**create_map_copy(t_map *map)
 {
 	char	**tmp;
-	int		i;
+	int		a;
 
 	tmp = malloc(sizeof(char *) * (map->height + 1));
 	if (!tmp)
 		return (NULL);
-	i = 0;
-	while (i < map->height)
+	a = 0;
+	while (a < map->height)
 	{
-		tmp[i] = ft_strdup(map->realmap[i]);
-		if (!tmp[i])
+		tmp[a] = ft_strdup(map->realmap[a]);
+		if (!tmp[a])
 		{
-			while (--i >= 0)
-				free(tmp[i]);
+			while (--a >= 0)
+				free(tmp[a]);
 			free(tmp);
 			return (NULL);
 		}
-		i++;
+		a++;
 	}
-	tmp[i] = NULL;
+	tmp[a] = NULL;
 	return (tmp);
 }
 
 static void	free_map_copy(char **copy, int height)
 {
-	int	i;
+	int	a;
 
-	i = 0;
-	while (i < height)
+	a = 0;
+	while (a < height)
 	{
-		free(copy[i]);
-		i++;
+		free(copy[a]);
+		a++;
 	}
 	free(copy);
 }

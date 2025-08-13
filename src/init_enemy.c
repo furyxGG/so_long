@@ -40,7 +40,7 @@ void	set_enemy(t_game *game, int x, int y, int size)
 	game->enemies[size].pos_x = x;
 	game->enemies[size].pos_y = y;
 	game->enemies[size].current_frame = 0;
-	game->enemies[size].frame_counter = size * 10;
+	game->enemies[size].frame_counter = size * size;
 }
 
 void	find_all_enemies(t_game *game)

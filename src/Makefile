@@ -15,7 +15,9 @@ SRCS	=	read_map.c \
 			player_animation.c \
 			main_animation.c \
 			init_enemy.c \
-			enemy_animation.c
+			enemy_animation.c \
+			init_coin.c \
+			coin_animation.c
 
 OBJS	=	$(SRCS:.c=.o)
 

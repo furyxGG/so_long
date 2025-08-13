@@ -40,6 +40,12 @@ void	free_animations(t_game *game)
 		if (game->enemy_sprite[a])
 			mlx_destroy_image(game->mlx, game->enemy_sprite[a]);
 	}
+	a = -1;
+	while (++a < 4)
+	{
+		if (game->coin_sprite[a])
+			mlx_destroy_image(game->mlx, game->coin_sprite[a]);
+	}
 }
 
 void	freemap(t_game *game)
@@ -82,6 +88,8 @@ void	freegame(t_game *game)
 		free(game->player);
 	if (game->enemies)
 		free(game->enemies);
+	if (game->coins)
+		free(game->coins);
 	free(game);
 }
 

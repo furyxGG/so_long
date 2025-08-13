@@ -27,7 +27,6 @@ void	*get_enemy_frame(t_game *game, int enemy_index)
 		if (enemy->current_frame >= 4)
 			enemy->current_frame = 0;
 	}
-	
 	return (game->enemy_sprite[enemy->current_frame]);
 }
 

@@ -59,7 +59,8 @@ void	draw_map(t_game *game)
 		{
 			if (game->map->realmap[y][x] == 'D')
 				draw_enemy(game, x, y);
-			// if (game->map->realmap[y][x] == 'C')
+			if (game->map->realmap[y][x] == 'C')
+				draw_coin(game, x, y);
 			draw_wall_at_position(game, x, y);
 			x++;
 		}

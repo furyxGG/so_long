@@ -46,6 +46,12 @@ void	free_animations(t_game *game)
 		if (game->coin_sprite[a])
 			mlx_destroy_image(game->mlx, game->coin_sprite[a]);
 	}
+	a = -1;
+	while (++a < 7)
+	{
+		if (game->door_sprite[a])
+			mlx_destroy_image(game->mlx, game->door_sprite[a]);
+	}
 }
 
 void	freemap(t_game *game)
@@ -90,6 +96,8 @@ void	freegame(t_game *game)
 		free(game->enemies);
 	if (game->coins)
 		free(game->coins);
+	if (game->door)
+		free(game->door);
 	free(game);
 }
 
@@ -100,6 +108,7 @@ void	init_game(char *name)
 	game = malloc(sizeof(t_game));
 	if (!game)
 		exit(0);
+	game->is_door_open = 0;
 	init_map(game, name);
 	if (!game->map)
 	{

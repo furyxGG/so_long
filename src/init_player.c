@@ -39,14 +39,19 @@ int	animation_loop(t_game *game)
 {
     static int frame_count = 0;
 
+    if (!game || !game->mlx || !game->win || !game->player)
+        return (0);
     frame_count++;
     if (frame_count % 500 == 0)
     {
-		mlx_clear_window(game->mlx, game->win);
+        mlx_clear_window(game->mlx, game->win);
         draw_map(game);
-        mlx_put_image_to_window(game->mlx, game->win,
-            game->player_f_i[game->current_frame],
-            game->player->pos_x * 64, game->player->pos_y * 64);
+        if (game->player_f_i[game->current_frame])
+        {
+            mlx_put_image_to_window(game->mlx, game->win,
+                game->player_f_i[game->current_frame],
+                game->player->pos_x * 64, game->player->pos_y * 64);
+        }
 
         game->current_frame++;
         if (game->current_frame >= 8)

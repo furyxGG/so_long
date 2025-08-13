@@ -26,6 +26,12 @@
 
 #include "so_long.h"
 
+void	take_coin(t_game *game, int new_x, int new_y)
+{
+	game->map->realmap[new_y][new_x] = 'Q';
+	game->player->score++;
+}
+
 void	draw_coin(t_game *game, int x, int y)
 {
 	void	*coin_frame;

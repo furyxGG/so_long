@@ -14,11 +14,11 @@
 
 void	*get_coin_frame(t_game *game, int coin_index)
 {
-	t_enemy *coin;
+	t_coin *coin;
 
 	if (!game->coins || coin_index >= game->map->coinc)
 		return NULL;
-	coin = &game->enemies[coin_index];
+	coin = &game->coins[coin_index];
 	coin->frame_counter++;
 	if (coin->frame_counter >= 4)
 	{

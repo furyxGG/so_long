@@ -20,6 +20,10 @@ static int	is_valid_move(t_game *game, int new_x, int new_y)
 		return (0);
 	if (game->map->realmap[new_y][new_x] == '1')
 		return (0);
+	if (game->map->realmap[new_y][new_x] == 'C')
+		take_coin(game, new_x, new_y);
+	if (game->map->realmap[new_y][new_x] == 'E')
+		quit_game(game);
 	return (1);
 }
 

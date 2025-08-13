@@ -53,6 +53,16 @@ typedef struct	s_enemy
 	int				frame_counter;
 }				t_enemy;
 
+typedef struct	s_door
+{
+	int				pos_x;
+	int				pos_y;
+	int				img_x;
+	int				img_y;
+	int				current_frame;
+	int				frame_counter;
+}				t_door;
+
 typedef struct	s_coin
 {
 	int				pos_x;
@@ -80,7 +90,10 @@ typedef struct	s_game
 	t_enemy		*enemies;
 	t_coin		*coins;
 	t_wall		*wall;
+	t_door		*door;
+	int			is_door_open;
 	void		*enemy_sprite[4];
+	void		*door_sprite[7];
 	void		*coin_sprite[4];
 	void		*player_f_i[8];
     int			current_frame;
@@ -113,13 +126,16 @@ void	init_mlx(t_game *game);
 void	init_wall(t_game *game);
 void	init_enemy(t_game *game);
 void	init_coin(t_game *game);
+void	init_door(t_game *game);
 
 int		take_key(int keycode, void *param);
 int		take_close(void *param);
+void	take_coin(t_game *game, int new_x, int new_y);
 
 void	draw_map(t_game *game);
 void	draw_enemy(t_game *game, int x, int y);
 void	draw_coin(t_game *game, int x, int y);
+void	draw_door(t_game *game, int x, int y);
 void	animate_player(t_game *game, char **paths);
 int		animation_loop(t_game *game);
 void	player_idle_down(t_game *game);
@@ -133,5 +149,10 @@ void	load_enemy_sprites(t_game *game);
 
 void	*get_coin_frame(t_game *game, int enemy_index);
 void	load_coin_sprites(t_game *game);
+
+void	*get_door_frame(t_game *game);
+void	load_door_sprites(t_game *game);
+
+void	quit_game(t_game *game);
 
 #endif

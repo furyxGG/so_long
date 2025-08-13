@@ -57,18 +57,20 @@ void	draw_map(t_game *game)
 		x = 0;
 		while (game->map->realmap[y][x])
 		{
+			if (game->map->realmap[y][x] == 'E')
+				draw_door(game, x, y);
+			draw_wall_at_position(game, x, y);
 			if (game->map->realmap[y][x] == 'D')
 				draw_enemy(game, x, y);
-			if (game->map->realmap[y][x] == 'C')
+			else if (game->map->realmap[y][x] == 'C')
 				draw_coin(game, x, y);
-			draw_wall_at_position(game, x, y);
 			x++;
 		}
 		y++;
 	}
-    step = ft_itoa(game->player->step);
-    mlx_string_put(game->mlx, game->win, 32, game->map->height * 64 - 32, 0x497367, step);
-    free(step);
+	step = ft_itoa(game->player->step);
+	mlx_string_put(game->mlx, game->win, 32, game->map->height * 64 - 32, 0x497367, step);
+	free(step);
 }
 
 static void	load_wall_images(t_game *game)

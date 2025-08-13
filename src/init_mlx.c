@@ -14,7 +14,13 @@
 
 void	init_mlx(t_game *game)
 {
+	int	w;
+	int	h;
+
 	game->mlx = mlx_init();
+	mlx_get_screen_size(game->mlx, &w, &h);
+	if (game->map->height * 64 > h || game->map->len * 64 > w)
+		give_error(game, "Error: Your screen is not enought.\n");
 	game->win = mlx_new_window(game->mlx, game->map->len * 64, game->map->height * 64, "so_long");
 	init_wall(game);
 	init_enemy(game);

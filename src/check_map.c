@@ -76,7 +76,7 @@ int	check_map_name(t_map *map)
 	a = 0;
 	while (arr[a])
 		a++;
-	if (!ft_strnstr(arr[a - 1], "ber", 3))
+	if (arr[a - 1][0] != 'b' || arr[a - 1][1] != 'e' || arr[a - 1][2] != 'r' || arr[a - 1][3] != '\0')
 	{
 		a = -1;
 		while (arr[++a])
@@ -91,26 +91,22 @@ int	check_map_name(t_map *map)
 	return (1);
 }
 
-int	check_map(t_map *map)
+void	check_map(t_game *game)
 {
-	if (get_line_size(map) == -42)
-		return (-42);
-	if (get_colmn_size(map) < 3 || get_colmn_size(map) == -42)
-		return (-42);
-	if (check_wall_ok(map) == -42)
-		return (-42);
-	if (check_chars(map) == -42)
-		return (-42);
-	if (map->coinc < 1)
-		return (-42);
-	if (map->playerc != 1)
-		return (-42);
-	if (map->exitc != 1)
-		return (-42);
-	if (check_map_name(map) == -42)
-		return (-42);
-	if (!check_path(map))
-		return (-42);
-	ft_printf("Harita doğru!");
-	return (1);
+	if (get_line_size(game->map) == -42)
+		give_error(game, "Error: The map must have at least 3 lines.\n");
+	if (get_colmn_size(game->map) < 3 || get_colmn_size(game->map) == -42)
+		give_error(game, "Error: The map must have at least 3 columns.\n");
+	if (check_wall_ok(game->map) == -42)
+		give_error(game, "Error: The map must be surrounded by walls.\n");
+	if (check_chars(game->map) == -42)
+		give_error(game, "Error: The map contains invalid characters.\n");
+	if (game->map->playerc != 1)
+		give_error(game, "Error: The map must contain exactly one player.\n");
+	if (game->map->coinc < 1)
+		give_error(game, "Error: The map must contain at least one coin.\n");
+	if (game->map->exitc != 1)
+		give_error(game, "Error: The map must contain exactly one exit.\n");
+	if (!check_path(game->map))
+		give_error(game, "Error: There is no valid path to collect all coins and reach the exit.\n");
 }

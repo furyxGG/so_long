@@ -12,93 +12,38 @@
 
 #include "so_long.h"
 
-void	free_animations(t_game *game)
+void	give_error(t_game *game, char *msg)
 {
-	int	a;
+	ft_printf("%s", msg);
+	freegame(game);
+    exit(0);
+}
 
-	a = 0;
-	if (game->wall)
-	{
-		while (a < 9)
-		{
-			if (game->wall->wallimage[a])
-				mlx_destroy_image(game->mlx, game->wall->wallimage[a]);
-			a++;
-		}
-		free(game->wall);
-	}
-	a = 0;
-	while (a < 8)
-	{
-		if (game->player_f_i[a])
-			mlx_destroy_image(game->mlx, game->player_f_i[a]);
-		a++;
-	}
+static void	helper_game(t_game *game)
+{
+	int a;
+
+	game->is_door_open = 0;
+	game->door = NULL;
+	game->enemies = NULL;
+	game->coins = NULL;
+	game->map = NULL;
+	game->player = NULL;
+	game->wall = NULL;
+	game->mlx = NULL;
+	game->win = NULL;
+	a = -1;
+	while (++a < 8)
+		game->player_f_i[a] = NULL;
 	a = -1;
 	while (++a < 4)
-	{
-		if (game->enemy_sprite[a])
-			mlx_destroy_image(game->mlx, game->enemy_sprite[a]);
-	}
+		game->enemy_sprite[a] = NULL;
 	a = -1;
 	while (++a < 4)
-	{
-		if (game->coin_sprite[a])
-			mlx_destroy_image(game->mlx, game->coin_sprite[a]);
-	}
+		game->coin_sprite[a] = NULL;
 	a = -1;
 	while (++a < 7)
-	{
-		if (game->door_sprite[a])
-			mlx_destroy_image(game->mlx, game->door_sprite[a]);
-	}
-}
-
-void	freemap(t_game *game)
-{
-	int	a;
-
-	a = 0;
-	if (game->map)
-	{
-		if (game->map->mapname)
-			free(game->map->mapname);
-		if (game->map->realmap)
-		{
-			while (game->map->realmap[a])
-			{
-				free(game->map->realmap[a]);
-				a++;
-			}
-		}
-		free(game->map->realmap);
-		free(game->map);
-		game->map = NULL;
-	}
-}
-
-void	freegame(t_game *game)
-{
-	if (!game)
-		return ;
-	free_animations(game);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
-	freemap(game);
-	if (game->player)
-		free(game->player);
-	if (game->enemies)
-		free(game->enemies);
-	if (game->coins)
-		free(game->coins);
-	if (game->door)
-		free(game->door);
-	free(game);
+		game->door_sprite[a] = NULL;
 }
 
 void	init_game(char *name)
@@ -108,14 +53,13 @@ void	init_game(char *name)
 	game = malloc(sizeof(t_game));
 	if (!game)
 		exit(0);
-	game->is_door_open = 0;
+	helper_game(game);
 	init_map(game, name);
 	if (!game->map)
 	{
-		free(game);
+		freegame(game);
 		return ;
 	}
 	init_player(game);
 	init_mlx(game);
-	freegame(game);
 }

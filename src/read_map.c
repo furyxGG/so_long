@@ -30,6 +30,8 @@ int	get_line_size(t_map *map)
 
 	a = 0;
 	fd = open(map->mapname, O_RDONLY);
+	if (fd < 0)
+		ft_printf("Error: There is no map file.\n");
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -65,6 +67,8 @@ int	get_colmn_size(t_map *map)
 	int		size;
 
 	fd = open(map->mapname, O_RDONLY);
+	if (fd < 0)
+		ft_printf("Error: There is no map file.\n");
 	line = get_next_line(fd);
 	size = clean_line(line);
 	a = 2;

@@ -110,8 +110,9 @@ void	get_enemy_size(t_map *map);
 void	get_player_pos(t_game *game);
 
 int		check_wall_ok(t_map *map);
-int		check_map(t_map *map);
+void	check_map(t_game *game);
 int		check_path(t_map *map);
+int		check_map_name(t_map *map);
 
 void	init_map(t_game *game, char *filename);
 void	init_game(char *name);
@@ -119,8 +120,8 @@ void	init_player(t_game *game);
 
 int		validate_chars(char *line, char *chars);
 
-void	freemap(t_game *game);
 void	freegame(t_game *game);
+void	freemap(t_game *game);
 
 void	init_mlx(t_game *game);
 void	init_wall(t_game *game);
@@ -153,6 +154,7 @@ void	load_coin_sprites(t_game *game);
 void	*get_door_frame(t_game *game);
 void	load_door_sprites(t_game *game);
 
+void	give_error(t_game *game, char *msg);
 void	quit_game(t_game *game);
 
 #endif

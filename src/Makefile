@@ -19,7 +19,8 @@ SRCS	=	read_map.c \
 			init_coin.c \
 			coin_animation.c \
 			init_door.c \
-			door_animation.c
+			door_animation.c \
+			free_game.c
 
 OBJS	=	$(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 01:07:54 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/12 01:07:54 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:50:47 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ static void	draw_wall_at_position(t_game *game, int x, int y)
 
 void	draw_map(t_game *game)
 {
-	int 	x;
-	int 	y;
-    char    *step;
+	int		x;
+	int		y;
 
 	y = 0;
 	while (game->map->realmap[y])
@@ -68,9 +67,7 @@ void	draw_map(t_game *game)
 		}
 		y++;
 	}
-	step = ft_itoa(game->player->step);
-	mlx_string_put(game->mlx, game->win, 32, game->map->height * 64 - 32, 0x497367, step);
-	free(step);
+	draw_score_steps(game);
 }
 
 static void	load_wall_images(t_game *game)
@@ -91,7 +88,7 @@ static void	load_wall_images(t_game *game)
 	while (i < 9)
 	{
 		game->wall->wallimage[i] = mlx_xpm_file_to_image(game->mlx,
-			paths[i], &game->wall->x, &game->wall->y);
+				paths[i], &game->wall->x, &game->wall->y);
 		i++;
 	}
 }

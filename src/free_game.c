@@ -6,37 +6,16 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:25:33 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/13 23:25:33 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:39:57 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	free_animations(t_game *game)
+static void	free_sprites(t_game *game)
 {
 	int	a;
 
-	if (!game)
-		return;
-		
-	a = 0;
-	if (game->wall)
-	{
-		while (a < 9)
-		{
-			if (game->wall->wallimage[a] && game->mlx)
-				mlx_destroy_image(game->mlx, game->wall->wallimage[a]);
-			a++;
-		}
-		free(game->wall);
-	}
-	a = 0;
-	while (a < 8)
-	{
-		if (game->player_f_i[a] && game->mlx)
-			mlx_destroy_image(game->mlx, game->player_f_i[a]);
-		a++;
-	}
 	a = -1;
 	while (++a < 4)
 	{
@@ -57,7 +36,34 @@ static void	free_animations(t_game *game)
 	}
 }
 
-void	freemap(t_game *game)
+static void	free_animations(t_game *game)
+{
+	int	a;
+
+	if (!game)
+		return ;
+	a = 0;
+	if (game->wall)
+	{
+		while (a < 9)
+		{
+			if (game->wall->wallimage[a] && game->mlx)
+				mlx_destroy_image(game->mlx, game->wall->wallimage[a]);
+			a++;
+		}
+		free(game->wall);
+	}
+	a = 0;
+	while (a < 8)
+	{
+		if (game->player_f_i[a] && game->mlx)
+			mlx_destroy_image(game->mlx, game->player_f_i[a]);
+		a++;
+	}
+	free_sprites(game);
+}
+
+static void	freemap(t_game *game)
 {
 	int	a;
 

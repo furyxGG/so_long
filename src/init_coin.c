@@ -6,21 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:39:36 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/13 18:39:36 by fyagbasa         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "so_long.h"
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_enemy.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/13 17:18:37 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/13 17:18:37 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:40:58 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +16,8 @@ void	take_coin(t_game *game, int new_x, int new_y)
 {
 	game->map->realmap[new_y][new_x] = 'Q';
 	game->player->score++;
+	ft_printf("Coin collected! %d coin left.\n",
+		game->map->coinc - game->player->score);
 }
 
 void	draw_coin(t_game *game, int x, int y)
@@ -46,16 +34,16 @@ void	draw_coin(t_game *game, int x, int y)
 			{
 				coin_frame = get_coin_frame(game, c);
 				if (coin_frame)
-					mlx_put_image_to_window(game->mlx, game->win, 
-				coin_frame, x * 64, y * 64);
-				break;
+					mlx_put_image_to_window(game->mlx, game->win,
+						coin_frame, x * 64, y * 64);
+				break ;
 			}
 			c++;
 		}
 	}
 }
 
-void	set_coin(t_game *game, int x, int y, int size)
+static void	set_coin(t_game *game, int x, int y, int size)
 {
 	game->coins[size].pos_x = x;
 	game->coins[size].pos_y = y;
@@ -63,7 +51,7 @@ void	set_coin(t_game *game, int x, int y, int size)
 	game->coins[size].frame_counter = size * 10;
 }
 
-void	find_all_coins(t_game *game)
+static void	find_all_coins(t_game *game)
 {
 	int	a;
 	int	b;

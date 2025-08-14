@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: fyagbasa <fyagbasa@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/10 15:34:37 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/10 15:34:37 by fyagbasa         ###   ########.fr       */
+/*   Created: 2025/08/14 13:27:58 by fyagbasa          #+#    #+#             */
+/*   Updated: 2025/08/14 13:29:52 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (0);
 	init_game(argv[1]);
-    return (0);
+	return (0);
 }

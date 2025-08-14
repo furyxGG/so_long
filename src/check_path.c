@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 14:38:27 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/11 14:38:27 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:36:12 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	free_map_copy(char **copy, int height)
 static void	flood_fill(char **copy, int height, int len, t_map *map)
 {
 	if (height < 0 || height >= map->height || len < 0 || len >= map->len)
-        return ;
+		return ;
 	if (ft_strchr("1XD", copy[height][len]))
 		return ;
 	copy[height][len] = 'X';
@@ -107,5 +107,5 @@ int	check_path(t_map *map)
 		x++;
 	}
 	free_map_copy(tmp, map->height);
-	return(y);
+	return (y);
 }

@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 17:29:04 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/10 17:29:04 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:58:01 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 static void	freeit(char *line, int fd)
 {
 	free(line);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 }
@@ -77,7 +79,7 @@ int	get_colmn_size(t_map *map)
 		free(line);
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		if (size != clean_line(line))
 			return (freeit(line, fd), -42);
 		a++;

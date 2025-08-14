@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 15:35:33 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/10 15:35:33 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:59:15 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include <fcntl.h>
-# include <stdlib.h>
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char	**realmap;
 	char	*mapname;
@@ -32,7 +31,7 @@ typedef struct	s_map
 	int		height;
 }				t_map;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	int	pos_x;
 	int	pos_y;
@@ -43,7 +42,7 @@ typedef struct	s_player
 	int	img_y;
 }				t_player;
 
-typedef struct	s_enemy
+typedef struct s_enemy
 {
 	int				pos_x;
 	int				pos_y;
@@ -53,7 +52,7 @@ typedef struct	s_enemy
 	int				frame_counter;
 }				t_enemy;
 
-typedef struct	s_door
+typedef struct s_door
 {
 	int				pos_x;
 	int				pos_y;
@@ -63,7 +62,7 @@ typedef struct	s_door
 	int				frame_counter;
 }				t_door;
 
-typedef struct	s_coin
+typedef struct s_coin
 {
 	int				pos_x;
 	int				pos_y;
@@ -73,15 +72,14 @@ typedef struct	s_coin
 	int				frame_counter;
 }				t_coin;
 
-typedef struct	s_wall
+typedef struct s_wall
 {
 	void	*wallimage[9];
 	int		x;
 	int		y;
 }				t_wall;
 
-
-typedef struct	s_game
+typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
@@ -96,20 +94,14 @@ typedef struct	s_game
 	void		*door_sprite[7];
 	void		*coin_sprite[4];
 	void		*player_f_i[8];
-    int			current_frame;
+	int			current_frame;
 	int			current_enemy;
 }				t_game;
 
 int		get_line_size(t_map *map);
 int		get_colmn_size(t_map *map);
 void	get_real_map(t_map *map);
-void	get_coin_size(t_map *map);
-void	get_player_size(t_map *map);
-void	get_exit_size(t_map *map);
-void	get_enemy_size(t_map *map);
-void	get_player_pos(t_game *game);
 
-int		check_wall_ok(t_map *map);
 void	check_map(t_game *game);
 int		check_path(t_map *map);
 int		check_map_name(t_map *map);
@@ -121,7 +113,6 @@ void	init_player(t_game *game);
 int		validate_chars(char *line, char *chars);
 
 void	freegame(t_game *game);
-void	freemap(t_game *game);
 
 void	init_mlx(t_game *game);
 void	init_wall(t_game *game);
@@ -137,7 +128,7 @@ void	draw_map(t_game *game);
 void	draw_enemy(t_game *game, int x, int y);
 void	draw_coin(t_game *game, int x, int y);
 void	draw_door(t_game *game, int x, int y);
-void	animate_player(t_game *game, char **paths);
+void	draw_score_steps(t_game *game);
 int		animation_loop(t_game *game);
 void	player_idle_down(t_game *game);
 void	player_idle_right(t_game *game);

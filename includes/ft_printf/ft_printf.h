@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: fyagbasa <fyagbasa@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/26 03:50:06 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/13 15:35:40 by fyagbasa         ###   ########.fr       */
+/*   Created: 2025/08/14 13:28:43 by fyagbasa          #+#    #+#             */
+/*   Updated: 2025/08/14 13:29:11 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_printptr(unsigned long long addr, int a);
 int		ft_printnum(int nbr, char c);
 char	*ft_uitoa(unsigned int nbr);
 int		ft_basenum(unsigned int nbr);
-char    *ft_itoa(int n);
+char	*ft_itoa(int n);
 int		ft_printhex(unsigned int nbr, char c);
 
 #endif

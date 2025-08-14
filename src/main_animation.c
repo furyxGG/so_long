@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:06:26 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/12 16:06:26 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:54:30 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static int	is_valid_move(t_game *game, int new_x, int new_y)
 {
-	if (new_x < 0 || new_x >= game->map->len || 
-		new_y < 0 || new_y >= game->map->height)
+	if (new_x < 0 || new_x >= game->map->len
+		|| new_y < 0 || new_y >= game->map->height)
 		return (0);
 	if (game->map->realmap[new_y][new_x] == '1')
 		return (0);
@@ -37,7 +37,7 @@ static void	check_enemy_collision(t_game *game, int x, int y)
 	}
 }
 
-void	helper_anim(t_game *game, int new_x, int new_y)
+static void	helper_anim(t_game *game, int new_x, int new_y)
 {
 	game->player->pos_x = new_x;
 	game->player->pos_y = new_y;
@@ -46,7 +46,7 @@ void	helper_anim(t_game *game, int new_x, int new_y)
 	draw_map(game);
 }
 
-void	helper_anim2(t_game *game, int n)
+static void	helper_anim2(t_game *game, int n)
 {
 	if (n == 0)
 	{
@@ -86,4 +86,5 @@ void	main_animation(t_game *game, int n)
 	check_enemy_collision(game, new_x, new_y);
 	helper_anim2(game, n);
 	helper_anim(game, new_x, new_y);
+	ft_printf("Step: %d\n", game->player->step);
 }

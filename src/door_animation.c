@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:18:37 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/13 20:18:37 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:38:59 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*get_door_frame(t_game *game)
 {
-	t_door *door;
+	t_door	*door;
 
 	if (!game->door)
-		return NULL;
+		return (NULL);
 	door = game->door;
 	door->frame_counter++;
 	if (door->frame_counter >= 7)
@@ -32,23 +32,23 @@ void	*get_door_frame(t_game *game)
 
 void	load_door_sprites(t_game *game)
 {
-	int w;
+	int	w;
 	int	h;
 
 	if (!game->mlx)
-		return;
-	game->door_sprite[0] = mlx_xpm_file_to_image(game->mlx, 
-		"./textures/door/door_1.xpm", &w, &h);
-	game->door_sprite[1] = mlx_xpm_file_to_image(game->mlx, 
-		"./textures/door/door_2.xpm", &w, &h);
-	game->door_sprite[2] = mlx_xpm_file_to_image(game->mlx, 
-		"./textures/door/door_3.xpm", &w, &h);
-	game->door_sprite[3] = mlx_xpm_file_to_image(game->mlx, 
-		"./textures/door/door_4.xpm", &w, &h);
-	game->door_sprite[4] = mlx_xpm_file_to_image(game->mlx, 
-		"./textures/door/door_5.xpm", &w, &h);
-	game->door_sprite[5] = mlx_xpm_file_to_image(game->mlx, 
-		"./textures/door/door_6.xpm", &w, &h);
-	game->door_sprite[6] = mlx_xpm_file_to_image(game->mlx, 
-		"./textures/door/door_7.xpm", &w, &h);
+		return ;
+	game->door_sprite[0] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/door/door_1.xpm", &w, &h);
+	game->door_sprite[1] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/door/door_2.xpm", &w, &h);
+	game->door_sprite[2] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/door/door_3.xpm", &w, &h);
+	game->door_sprite[3] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/door/door_4.xpm", &w, &h);
+	game->door_sprite[4] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/door/door_5.xpm", &w, &h);
+	game->door_sprite[5] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/door/door_6.xpm", &w, &h);
+	game->door_sprite[6] = mlx_xpm_file_to_image(game->mlx,
+			"./textures/door/door_7.xpm", &w, &h);
 }

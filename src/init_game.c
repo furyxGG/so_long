@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 14:49:11 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/11 14:49:11 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:44:35 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	give_error(t_game *game, char *msg)
 {
 	ft_printf("%s", msg);
 	freegame(game);
-    exit(0);
+	exit(0);
 }
 
 static void	helper_game(t_game *game)
 {
-	int a;
+	int	a;
 
 	game->is_door_open = 0;
 	game->door = NULL;
@@ -48,7 +48,7 @@ static void	helper_game(t_game *game)
 
 void	init_game(char *name)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = malloc(sizeof(t_game));
 	if (!game)

@@ -6,13 +6,13 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 13:43:05 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/11 13:43:05 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:45:28 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_coin_size(t_map *map)
+static void	get_coin_size(t_map *map)
 {
 	int	a;
 	int	b;
@@ -34,7 +34,7 @@ void	get_coin_size(t_map *map)
 	map->coinc = size;
 }
 
-void	get_player_size(t_map *map)
+static void	get_player_size(t_map *map)
 {
 	int	a;
 	int	b;
@@ -56,7 +56,7 @@ void	get_player_size(t_map *map)
 	map->playerc = size;
 }
 
-void	get_exit_size(t_map *map)
+static void	get_exit_size(t_map *map)
 {
 	int	a;
 	int	b;
@@ -78,7 +78,7 @@ void	get_exit_size(t_map *map)
 	map->exitc = size;
 }
 
-void	get_enemy_size(t_map *map)
+static void	get_enemy_size(t_map *map)
 {
 	int	a;
 	int	b;
@@ -113,11 +113,14 @@ void	init_map(t_game *game, char *filename)
 	}
 	game->map->realmap = NULL;
 	if (check_map_name(game->map) == -42)
-		give_error(game, "Error: Invalid map file name. It must end with '.ber'.\n");
+		give_error(game, "Error: Invalid map file name. "
+			"It must end with '.ber'.\n");
 	if (get_line_size(game->map) == -42)
-		give_error(game, "Error: The map must have at least 3 lines and be rectangular.\n");
+		give_error(game, "Error: The map must have at least "
+			"3 lines and be rectangular.\n");
 	if (get_colmn_size(game->map) == -42)
-		give_error(game, "Error: The map must have at least 3 columns and be rectangular.\n");
+		give_error(game, "Error: The map must have at least "
+			"3 columns and be rectangular.\n");
 	get_real_map(game->map);
 	get_coin_size(game->map);
 	get_player_size(game->map);

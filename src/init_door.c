@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:17:32 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/13 20:17:32 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:42:42 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	quit_game(t_game *game)
 {
 	if (game->is_door_open != 0)
 	{
+		ft_printf("You did it! Victory is yours!\n");
 		freegame(game);
 		exit(0);
 	}
@@ -33,21 +34,21 @@ void	draw_door(t_game *game, int x, int y)
 			{
 				door_frame = get_door_frame(game);
 				if (door_frame)
-					mlx_put_image_to_window(game->mlx, game->win, 
-				door_frame, x * 64, y * 64);
+					mlx_put_image_to_window(game->mlx, game->win,
+						door_frame, x * 64, y * 64);
 				game->is_door_open = 42;
 			}
 			else if (game->player->score == -42)
-				mlx_put_image_to_window(game->mlx, game->win, 
-				game->door_sprite[6], x * 64, y * 64);
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->door_sprite[6], x * 64, y * 64);
 			else
-				mlx_put_image_to_window(game->mlx, game->win, 
-				game->door_sprite[0], x * 64, y * 64);
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->door_sprite[0], x * 64, y * 64);
 		}
 	}
 }
 
-void	set_door(t_game *game, int x, int y)
+static void	set_door(t_game *game, int x, int y)
 {
 	game->door->pos_x = x;
 	game->door->pos_y = y;
@@ -55,7 +56,7 @@ void	set_door(t_game *game, int x, int y)
 	game->door->frame_counter = 10;
 }
 
-void	find_door(t_game *game)
+static void	find_door(t_game *game)
 {
 	int	a;
 	int	b;

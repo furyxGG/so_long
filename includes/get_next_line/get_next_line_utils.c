@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/26 05:36:21 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/10 18:06:02 by fyagbasa         ###   ########.fr       */
+/*   Created: 2025/08/14 13:34:24 by fyagbasa          #+#    #+#             */
+/*   Updated: 2025/08/14 14:47:11 by fyagbasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 
 	if (!s1 && !s2)
 		return (NULL);
-	str = (char *)malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1) * sizeof(char));
+	str = (char *)malloc((ft_strlen_gnl(s1)
+				+ ft_strlen_gnl(s2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	a = 0;

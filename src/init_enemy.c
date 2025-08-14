@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 17:18:37 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/13 17:18:37 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:43:28 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void	draw_enemy(t_game *game, int x, int y)
 			{
 				enemy_frame = get_enemy_frame(game, c);
 				if (enemy_frame)
-					mlx_put_image_to_window(game->mlx, game->win, 
-				enemy_frame, x * 64, y * 64);
-				break;
+					mlx_put_image_to_window(game->mlx, game->win,
+						enemy_frame, x * 64, y * 64);
+				break ;
 			}
 			c++;
 		}
 	}
 }
 
-void	set_enemy(t_game *game, int x, int y, int size)
+static void	set_enemy(t_game *game, int x, int y, int size)
 {
 	game->enemies[size].pos_x = x;
 	game->enemies[size].pos_y = y;
@@ -43,7 +43,7 @@ void	set_enemy(t_game *game, int x, int y, int size)
 	game->enemies[size].frame_counter = size * size;
 }
 
-void	find_all_enemies(t_game *game)
+static void	find_all_enemies(t_game *game)
 {
 	int	a;
 	int	b;

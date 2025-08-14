@@ -6,7 +6,7 @@
 /*   By: fyagbasa <fyagbasa@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:50 by fyagbasa          #+#    #+#             */
-/*   Updated: 2025/08/11 12:09:50 by fyagbasa         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:35:34 by fyagbasa         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	check_chars(t_map *map)
 	return (1);
 }
 
-int	check_wall_ok(t_map *map)
+static int	check_wall_ok(t_map *map)
 {
 	int	a;
 	int	b;
@@ -76,7 +76,8 @@ int	check_map_name(t_map *map)
 	a = 0;
 	while (arr[a])
 		a++;
-	if (arr[a - 1][0] != 'b' || arr[a - 1][1] != 'e' || arr[a - 1][2] != 'r' || arr[a - 1][3] != '\0')
+	if (arr[a - 1][0] != 'b' || arr[a - 1][1] != 'e'
+		|| arr[a - 1][2] != 'r' || arr[a - 1][3] != '\0')
 	{
 		a = -1;
 		while (arr[++a])
@@ -108,5 +109,6 @@ void	check_map(t_game *game)
 	if (game->map->exitc != 1)
 		give_error(game, "Error: The map must contain exactly one exit.\n");
 	if (!check_path(game->map))
-		give_error(game, "Error: There is no valid path to collect all coins and reach the exit.\n");
+		give_error(game, "Error: There is no valid path to collect all "
+			"coins and reach the exit.\n");
 }

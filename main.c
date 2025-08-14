@@ -15,7 +15,10 @@
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
+	{
+		ft_printf("Error! Usage: ./so_long map.ber\n");
 		return (0);
+	}
 	init_game(argv[1]);
 	return (0);
 }

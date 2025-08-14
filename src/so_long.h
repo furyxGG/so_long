@@ -90,6 +90,7 @@ typedef struct s_game
 	t_wall		*wall;
 	t_door		*door;
 	int			is_door_open;
+	int			door_anim;
 	void		*enemy_sprite[4];
 	void		*door_sprite[7];
 	void		*coin_sprite[4];

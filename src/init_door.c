@@ -30,15 +30,15 @@ void	draw_door(t_game *game, int x, int y)
 	{
 		if (game->door->pos_x == x && game->door->pos_y == y)
 		{
-			if (game->player->score == game->map->coinc)
+			if (game->player->score == game->map->coinc && game->door_anim != 42)
 			{
 				door_frame = get_door_frame(game);
 				if (door_frame)
 					mlx_put_image_to_window(game->mlx, game->win,
 						door_frame, x * 64, y * 64);
-				game->is_door_open = 42;
+				game->is_door_open = 1;
 			}
-			else if (game->player->score == -42)
+			else if (game->door_anim == 42)
 				mlx_put_image_to_window(game->mlx, game->win,
 					game->door_sprite[6], x * 64, y * 64);
 			else

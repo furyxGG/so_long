@@ -24,6 +24,7 @@ static void	helper_game(t_game *game)
 	int	a;
 
 	game->is_door_open = 0;
+	game->door_anim = 0;
 	game->door = NULL;
 	game->enemies = NULL;
 	game->coins = NULL;

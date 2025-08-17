@@ -25,7 +25,10 @@ void	*get_door_frame(t_game *game)
 		door->frame_counter = 0;
 		door->current_frame++;
 		if (door->current_frame >= 7)
+		{
+			door->current_frame = 6;
 			game->door_anim = 42;
+		}
 	}
 	return (game->door_sprite[door->current_frame]);
 }

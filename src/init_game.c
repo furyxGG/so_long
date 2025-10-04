@@ -14,7 +14,7 @@
 
 void	give_error(t_game *game, char *msg)
 {
-	ft_printf("%s", msg);
+	ft_putstr_fd(msg, 2);
 	freegame(game);
 	exit(0);
 }

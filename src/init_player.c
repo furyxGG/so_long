@@ -42,7 +42,7 @@ int	animation_loop(t_game *game)
 	if (!game || !game->mlx || !game->win || !game->player)
 		return (0);
 	frame_count++;
-	if (frame_count % 500 == 0)
+	if (frame_count % 5000 == 0)
 	{
 		mlx_clear_window(game->mlx, game->win);
 		draw_map(game);

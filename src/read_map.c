@@ -108,6 +108,6 @@ void	get_real_map(t_map *map)
 		free(line);
 		a++;
 	}
-	map->realmap[a] = '\0';
+	map->realmap[a] = NULL;
 	close(fd);
 }

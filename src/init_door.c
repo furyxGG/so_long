@@ -30,7 +30,8 @@ void	draw_door(t_game *game, int x, int y)
 	{
 		if (game->door->pos_x == x && game->door->pos_y == y)
 		{
-			if (game->player->score == game->map->coinc && game->door_anim != 42)
+			if (game->player->score == game->map->coinc
+				&& game->door_anim != 42)
 			{
 				door_frame = get_door_frame(game);
 				if (door_frame)

@@ -99,9 +99,9 @@ typedef struct s_game
 	int			current_enemy;
 }				t_game;
 
-int		get_line_size(t_map *map);
-int		get_colmn_size(t_map *map);
-void	get_real_map(t_map *map);
+int		get_line_size(t_game *game);
+int		get_colmn_size(t_game *game);
+void	get_real_map(t_game *game);
 
 void	check_map(t_game *game);
 int		check_path(t_map *map);

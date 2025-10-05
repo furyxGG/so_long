@@ -115,13 +115,13 @@ void	init_map(t_game *game, char *filename)
 	if (check_map_name(game->map) == -42)
 		give_error(game, "Error: Invalid map file name. "
 			"It must end with '.ber'.\n");
-	if (get_line_size(game->map) == -42)
+	if (get_line_size(game) == -42)
 		give_error(game, "Error: The map must have at least "
 			"3 lines and be rectangular.\n");
-	if (get_colmn_size(game->map) == -42)
+	if (get_colmn_size(game) == -42)
 		give_error(game, "Error: The map must have at least "
 			"3 columns and be rectangular.\n");
-	get_real_map(game->map);
+	get_real_map(game);
 	get_coin_size(game->map);
 	get_player_size(game->map);
 	get_exit_size(game->map);

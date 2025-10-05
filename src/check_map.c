@@ -94,9 +94,9 @@ int	check_map_name(t_map *map)
 
 void	check_map(t_game *game)
 {
-	if (get_line_size(game->map) == -42)
+	if (get_line_size(game) == -42)
 		give_error(game, "Error: The map must have at least 3 lines.\n");
-	if (get_colmn_size(game->map) < 3 || get_colmn_size(game->map) == -42)
+	if (get_colmn_size(game) < 3 || get_colmn_size(game) == -42)
 		give_error(game, "Error: The map must have at least 3 columns.\n");
 	if (check_wall_ok(game->map) == -42)
 		give_error(game, "Error: The map must be surrounded by walls.\n");

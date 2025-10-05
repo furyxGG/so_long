@@ -24,16 +24,16 @@ static void	freeit(char *line, int fd)
 	close(fd);
 }
 
-int	get_line_size(t_map *map)
+int	get_line_size(t_game *game)
 {
 	int		a;
 	int		fd;
 	char	*line;
 
 	a = 0;
-	fd = open(map->mapname, O_RDONLY);
+	fd = open(game->map->mapname, O_RDONLY);
 	if (fd < 0)
-		ft_printf("Error: There is no map file.\n");
+		give_error(game, "Error: There is no map file.\n");
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -45,7 +45,7 @@ int	get_line_size(t_map *map)
 	close(fd);
 	if (a < 3)
 		return (-42);
-	map->height = a;
+	game->map->height = a;
 	return (a);
 }
 
@@ -61,20 +61,20 @@ static int	clean_line(char *line)
 	return (size);
 }
 
-int	get_colmn_size(t_map *map)
+int	get_colmn_size(t_game *game)
 {
 	int		fd;
 	int		a;
 	char	*line;
 	int		size;
 
-	fd = open(map->mapname, O_RDONLY);
+	fd = open(game->map->mapname, O_RDONLY);
 	if (fd < 0)
-		ft_printf("Error: There is no map file.\n");
+		give_error(game, "Error: There is no map file.\n");
 	line = get_next_line(fd);
 	size = clean_line(line);
 	a = 2;
-	while (a <= get_line_size(map))
+	while (a <= get_line_size(game))
 	{
 		free(line);
 		line = get_next_line(fd);
@@ -85,29 +85,29 @@ int	get_colmn_size(t_map *map)
 		a++;
 	}
 	freeit(line, fd);
-	map->len = size;
+	game->map->len = size;
 	return (size);
 }
 
-void	get_real_map(t_map *map)
+void	get_real_map(t_game *game)
 {
 	int		a;
 	char	*line;
 	int		fd;
 
-	if (get_line_size(map) > 0)
-		map->realmap = malloc(sizeof(char *) * (get_line_size(map) + 1));
-	if (!map->realmap)
+	if (get_line_size(game) > 0)
+		game->map->realmap = malloc(sizeof(char *) * (get_line_size(game) + 1));
+	if (!game->map->realmap)
 		return ;
 	a = 0;
-	fd = open(map->mapname, O_RDONLY);
-	while (a < get_line_size(map))
+	fd = open(game->map->mapname, O_RDONLY);
+	while (a < get_line_size(game))
 	{
 		line = get_next_line(fd);
-		map->realmap[a] = ft_strtrim(line, "\r\n");
+		game->map->realmap[a] = ft_strtrim(line, "\r\n");
 		free(line);
 		a++;
 	}
-	map->realmap[a] = NULL;
+	game->map->realmap[a] = NULL;
 	close(fd);
 }

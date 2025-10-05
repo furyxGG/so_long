@@ -38,14 +38,19 @@ static void	get_player_pos(t_game *game)
 int	animation_loop(t_game *game)
 {
 	static int	frame_count = 0;
+	static int	speed_for_other = 0;
 
 	if (!game || !game->mlx || !game->win || !game->player)
 		return (0);
 	frame_count++;
-	if (frame_count % 5000 == 0)
+	speed_for_other++;
+	if (speed_for_other % 10000 == 0)
 	{
 		mlx_clear_window(game->mlx, game->win);
 		draw_map(game);
+	}
+	if (frame_count % 10000 == 0)
+	{
 		if (game->player_f_i[game->current_frame])
 		{
 			mlx_put_image_to_window(game->mlx, game->win,
@@ -61,17 +66,9 @@ int	animation_loop(t_game *game)
 
 void	init_player(t_game *game)
 {
-	int	i;
-
 	game->player = malloc(sizeof(t_player));
 	if (!game->player)
 		return ;
-	i = 0;
-	while (i < 8)
-	{
-		game->player_f_i[i] = NULL;
-		i++;
-	}
 	get_player_pos(game);
 	game->player->score = 0;
 	game->player->step = 0;

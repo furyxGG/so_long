@@ -44,12 +44,12 @@ int	animation_loop(t_game *game)
 		return (0);
 	frame_count++;
 	speed_for_other++;
-	if (speed_for_other % 10000 == 0)
+	if (speed_for_other % 500 == 0)
 	{
 		mlx_clear_window(game->mlx, game->win);
 		draw_map(game);
 	}
-	if (frame_count % 10000 == 0)
+	if (frame_count % 500 == 0)
 	{
 		if (game->player_f_i[game->current_frame])
 		{

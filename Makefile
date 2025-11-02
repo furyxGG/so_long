@@ -12,7 +12,7 @@ MLX		=	includes/minilibx-linux/libmlx.a
 SRCS	=	main.c
 OBJS	=	$(SRCS:.c=.o)
 
-MLXFLAG	=	-Lincludes/minilibx-linux -lmlx -lX11 -lXext -lm
+MLXFLAG	=	-Lincludes/minilibx-linux -lmlx -lX11 -lXext -lm -lbsd
 
 all:		$(NAME)
 

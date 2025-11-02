@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-/*d 100 s 115 a 97 w 119*/
+
 int	take_key(int keycode, void *param)
 {
 	if (keycode == 53 || keycode == 65307)
